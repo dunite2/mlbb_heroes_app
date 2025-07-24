@@ -3,8 +3,7 @@ class HeroesController < ApplicationController
 
   def index
     @heroes = Hero.all
-    
-    # Simple Search functionality (Requirement 4.1)
+
     if params[:search].present?
       search_term = params[:search].downcase
       @heroes = @heroes.where(
@@ -12,26 +11,13 @@ class HeroesController < ApplicationController
         "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%"
       )
     end
-    
-    # Order heroes by name for consistent navigation
     @heroes = @heroes.order(:name)
+
+
+    @heroes_by_role = @heroes.group_by(&:role)
   end
 
   def show
-  end
-
-  def new
-    @hero = Hero.new
-  end
-
-  def create
-    @hero = Hero.new(hero_params)
-    
-    if @hero.save
-      redirect_to @hero, notice: 'Hero was successfully created.'
-    else
-      render :new
-    end
   end
 
   def edit
@@ -72,6 +58,6 @@ class HeroesController < ApplicationController
   end
 
   def hero_params
-    params.require(:hero).permit(:name, :role, :specialty, :difficulty, :lane, :description, :image_url)
+  params.require(:hero).permit(:name, :role, :specialty, :difficulty, :lane, :description, :image)
   end
 end

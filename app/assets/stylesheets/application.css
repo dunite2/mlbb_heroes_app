@@ -1,20 +1,3 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
-/* Base styles for valid HTML5 */
 * {
   box-sizing: border-box;
 }
@@ -28,242 +11,100 @@ body {
   background-color: #f8f9fa;
 }
 
-/* Navigation styles */
-.navbar {
-  background-color: #1e3a8a;
-  padding: 1rem 0;
+/* Navigation */
+nav {
+  background-color: #334d94;
+  padding: 15px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-brand {
+nav a {
   color: white;
   text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 1rem;
-}
-
-.nav-link {
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 8px 15px;
+  margin-right: 10px;
   border-radius: 4px;
   transition: background-color 0.3s;
 }
 
-.nav-link:hover {
+nav a:hover {
   background-color: rgba(255,255,255,0.1);
-  color: white;
   text-decoration: none;
 }
 
-/* Main content */
-.main-content {
+/* Main Content */
+body {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 20px;
+}
+
+/* Headers */
+h1 {
+  color: #1e3a8a;
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #1e3a8a;
+}
+
+h2 {
+  color: #334d94;
+  margin: 20px 0 10px 0;
+  padding: 10px;
+  background-color: #f0f4f8;
+  border-left: 4px solid #334d94;
 }
 
 /* Alerts */
-.alert {
-  padding: 1rem;
-  margin-bottom: 1rem;
+.notice, .alert {
+  padding: 15px;
+  margin: 15px 0;
   border-radius: 4px;
 }
 
-.alert-success {
+.notice, p[style*="green"] {
   background-color: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
 }
 
-.alert-danger {
+.alert, p[style*="red"] {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
 
-/* Heroes Index Page */
-.page-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.page-header h1 {
-  color: #1e3a8a;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  color: #6b7280;
-  font-size: 1.1rem;
-}
-
-/* Search Section */
-.search-section {
-  margin-bottom: 2rem;
-}
-
-.search-form {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.search-input-group {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.search-input {
-  flex: 1;
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-/* Buttons */
-.btn {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s;
-}
-
-.btn-primary {
-  background-color: #1e3a8a;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #1e40af;
-  color: white;
-  text-decoration: none;
-}
-
-.btn-secondary {
-  background-color: #6b7280;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background-color: #4b5563;
-  color: white;
-  text-decoration: none;
-}
-
-.btn-outline {
-  background-color: transparent;
-  color: #1e3a8a;
-  border: 1px solid #1e3a8a;
-}
-
-.btn-outline:hover {
-  background-color: #1e3a8a;
-  color: white;
-  text-decoration: none;
-}
-
-.btn-danger {
-  background-color: #dc2626;
-  color: white;
-}
-
-.btn-danger:hover {
-  background-color: #b91c1c;
-  color: white;
-  text-decoration: none;
-}
-
-.btn-sm {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-}
-
-.search-button, .clear-button {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.search-button {
-  background-color: #1e3a8a;
-  color: white;
-}
-
-.clear-button {
-  background-color: #6b7280;
-  color: white;
-}
-
-/* Collection Controls */
-.collection-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.stats {
-  color: #6b7280;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 1rem;
-}
-
 /* Heroes Grid */
-.heroes-grid {
+.heroes-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
 }
 
+/* Hero Cards */
 .hero-card {
-  background-color: white;
+  background: white;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
+  border: 1px solid #e0e0e0;
 }
 
 .hero-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 .hero-image {
-  position: relative;
-  height: 280px;
+  height: 200px;
   overflow: hidden;
-  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  background: linear-gradient(135deg, #334d94, #1e3a8a);
+  position: relative;
 }
 
 .hero-portrait {
@@ -277,292 +118,142 @@ body {
   transform: scale(1.05);
 }
 
-.hero-role-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
+.hero-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
   color: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.hero-role-badge.tank {
-  background: linear-gradient(45deg, #dc2626, #ef4444);
-}
-
-.hero-role-badge.fighter {
-  background: linear-gradient(45deg, #d97706, #f59e0b);
-}
-
-.hero-role-badge.assassin {
-  background: linear-gradient(45deg, #7c3aed, #8b5cf6);
-}
-
-.hero-role-badge.mage {
-  background: linear-gradient(45deg, #0891b2, #06b6d4);
-}
-
-.hero-role-badge.marksman {
-  background: linear-gradient(45deg, #059669, #10b981);
-}
-
-.hero-role-badge.support {
-  background: linear-gradient(45deg, #db2777, #ec4899);
+  font-weight: bold;
 }
 
 .hero-info {
-  padding: 1.5rem;
+  padding: 20px;
 }
 
-.hero-header {
-  margin-bottom: 1rem;
+.hero-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .hero-name a {
-  color: #1e3a8a;
+  color: #333;
   text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
 }
 
 .hero-name a:hover {
-  color: #3b82f6;
+  color: #334d94;
+  text-decoration: underline;
 }
 
-.hero-difficulty {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.hero-role {
+  display: inline-block;
+  background-color: #334d94;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
-.difficulty-stars {
-  color: #fbbf24;
-  font-size: 1rem;
-  letter-spacing: 1px;
-}
-
-.difficulty-text {
-  font-size: 0.875rem;
-  color: #6b7280;
-  font-weight: 500;
-}
-
-.hero-meta {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  background-color: #f8fafc;
-  border-radius: 8px;
-}
-
-.hero-lane,
-.hero-specialty {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.875rem;
-  color: #4b5563;
-  font-weight: 500;
-}
-
-.lane-icon,
-.specialty-icon {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #3b82f6;
+.hero-specialty, .hero-lane {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
 }
 
 .hero-description {
-  color: #6b7280;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+  margin-top: 10px;
 }
 
-.hero-actions {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+/* Role sections */
+.role-section {
+  margin-bottom: 30px;
 }
 
-.hero-actions .btn {
-  flex: 1;
-  text-align: center;
-  min-width: 80px;
+.heroes-list {
+  margin-top: 15px;
 }
 
-/* Empty State */
-.empty-state {
-  text-align: center;
-  padding: 3rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.empty-state h2 {
-  color: #6b7280;
-  margin-bottom: 1rem;
-}
-
-.empty-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-/* About Page */
-.about-page {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.about-content {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  margin-bottom: 2rem;
-}
-
-.hero-attributes {
-  background-color: #f8f9fa;
-  padding: 1rem;
-  border-radius: 4px;
-  margin: 1rem 0;
-}
-
-.navigation-links {
-  text-align: center;
-}
-
-.navigation-links .btn {
-  margin: 0 0.5rem;
-}
-
-/* Form Styles */
-.form-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.hero-form .form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #374151;
-}
-
-.form-input,
-.form-select,
-.form-textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e5e7eb;
+/* Forms */
+input, textarea, select {
+  padding: 10px;
+  border: 2px solid #e0e0e0;
   border-radius: 6px;
-  font-size: 1rem;
-  transition: border-color 0.2s ease;
+  font-size: 14px;
+  transition: border-color 0.2s;
 }
 
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
+input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #334d94;
 }
 
-.form-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.form-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.error-messages {
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
+/* Buttons */
+.btn, input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #334d94;
+  color: white;
+  border: none;
   border-radius: 6px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.error-messages h3 {
-  color: #dc2626;
-  margin: 0 0 0.5rem 0;
-  font-size: 1rem;
+.btn:hover, input[type="submit"]:hover {
+  background-color: #2a3d7a;
+  text-decoration: none;
+  color: white;
 }
 
-.error-messages ul {
-  color: #dc2626;
-  margin: 0;
-  padding-left: 1.5rem;
+/* Search */
+.search-form {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  text-align: center;
 }
 
-.error-messages li {
-  margin-bottom: 0.25rem;
+.search-input {
+  width: 70%;
+  padding: 12px;
+  margin-right: 10px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .collection-controls {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-  
-  .heroes-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .search-input-group {
-    flex-direction: column;
-  }
-  
-  .search-input {
-    width: 100%;
-  }
-  
-  .empty-actions {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .form-container {
-    margin: 1rem;
-    padding: 1.5rem;
-  }
-  
-  .form-actions {
-    flex-direction: column;
-  }
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background-color: #334d94;
+  color: white;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f0f4f8;
 }

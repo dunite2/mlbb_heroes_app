@@ -1,0 +1,42 @@
+<div class="roles-index">
+  <h1>Hero Roles</h1>
+  <% @roles.each do |role| %>
+    <div class="role-section">
+      <h2><%= role %></h2>
+      <% if @heroes_by_role[role].present? %>
+        <ul class="heroes-list">
+          <% @heroes_by_role[role].each do |hero| %>
+            <li class="hero-card">
+              <div class="hero-image">
+                <% if hero.image.attached? %>
+                  <%= image_tag hero.image, alt: hero.name, class: 'hero-portrait' %>
+                <% else %>
+                  <div class="hero-placeholder">?</div>
+                <% end %>
+              </div>
+              <div class="hero-info">
+                <div class="hero-name">
+                  <%= link_to hero.name, hero_path(hero) %>
+                </div>
+                <div class="hero-role"><%= hero.role %></div>
+                <% if hero.specialty.present? %>
+                  <div class="hero-specialty">Specialty: <%= hero.specialty %></div>
+                <% end %>
+                <% if hero.lane.present? %>
+                  <div class="hero-lane">Lane: <%= hero.lane %></div>
+                <% end %>
+                <% if hero.description.present? %>
+                  <div class="hero-description">
+                    <%= truncate(hero.description, length: 100) %>
+                  </div>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No heroes found for this role.</p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

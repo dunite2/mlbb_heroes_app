@@ -3,7 +3,7 @@
 <div class="heroes-index">
   <header class="page-header">
     <h1>Mobile Legends Heroes Collection</h1>
-    <p class="subtitle">Browse and manage all Mobile Legends: Bang Bang heroes</p>
+    <p class="subtitle">Browse all Mobile Legends: Bang Bang heroes</p>
   </header>
 
   <!-- Simple Search Form (Requirement 4.1) -->
@@ -31,85 +31,69 @@
       <% end %>
     </div>
     
-    <div class="action-buttons">
-      <%= link_to "Add New Hero", new_hero_path, class: "btn btn-primary" %>
-      <%= button_to "Import from API", "/heroes/import_from_api", 
-          method: :post, 
-          class: "btn btn-secondary",
-          confirm: "This will import heroes from the MLBB API. Continue?" %>
-    </div>
-  </div>
 
   <!-- Collection Navigation (Requirement 3.1) - Heroes Table/List -->
   <div class="heroes-collection">
     <% if @heroes.any? %>
-      <div class="heroes-grid">
-        <% @heroes.each do |hero| %>
-          <div class="hero-card" data-role="<%= hero.role.downcase %>" data-lane="<%= hero.lane.downcase.gsub(' ', '-') %>">
-            <div class="hero-image">
-              <% image_url = hero.image_url.present? ? hero.image_url : "https://via.placeholder.com/200x280/1e3a8a/ffffff?text=#{hero.name.gsub(' ', '+')}" %>
-              <%= image_tag image_url, 
-                  alt: hero.name, 
-                  class: "hero-portrait",
-                  onerror: "this.src='https://via.placeholder.com/200x280/1e3a8a/ffffff?text=#{hero.name.gsub(' ', '+')}'" %>
-              <div class="hero-role-badge <%= hero.role.downcase %>">
-                <%= hero.role %>
+      <% @heroes_by_role.each do |role, heroes| %>
+        <h2 class="role-heading"><%= role %></h2>
+        <div class="heroes-grid">
+          <% heroes.each do |hero| %>
+            <div class="hero-card" data-role="<%= hero.role.downcase %>" data-lane="<%= hero.lane.downcase.gsub(' ', '-') %>">
+              <div class="hero-image">
+                <% if hero.image.attached? %>
+                  <%= image_tag url_for(hero.image), alt: hero.name, class: "hero-portrait" %>
+                <% else %>
+                  <%= image_tag "https://via.placeholder.com/200x280/1e3a8a/ffffff?text=#{hero.name.gsub(' ', '+')}", alt: hero.name, class: "hero-portrait" %>
+                <% end %>
+                <div class="hero-role-badge <%= hero.role.downcase %>">
+                  <%= hero.role %>
+                </div>
+              </div>
+              <div class="hero-info">
+                <div class="hero-header">
+                  <h3 class="hero-name"><%= link_to hero.name, hero_path(hero) %></h3>
+                  <div class="hero-difficulty">
+                    <span class="difficulty-stars">
+                      <% hero.difficulty.times do %>★<% end %>
+                      <% (10 - hero.difficulty).times do %>☆<% end %>
+                    </span>
+                    <span class="difficulty-text"><%= hero.difficulty %>/10</span>
+                  </div>
+                </div>
+                <div class="hero-meta">
+                  <div class="hero-lane">
+                    <i class="lane-icon"></i>
+                    <%= hero.lane %>
+                  </div>
+                  <div class="hero-specialty">
+                    <i class="specialty-icon"></i>
+                    <%= hero.specialty %>
+                  </div>
+                </div>
+                <div class="hero-description">
+                  <%= truncate(hero.description, length: 120) %>
+                </div>
+                <div class="hero-actions">
+                  <%= link_to "View Details", hero_path(hero), class: "btn btn-primary btn-sm" %>
+                  <%= link_to "Edit", edit_hero_path(hero), class: "btn btn-outline btn-sm" %>
+                  <%= link_to "Delete", hero_path(hero), 
+                      method: :delete, 
+                      class: "btn btn-danger btn-sm",
+                      confirm: "Are you sure you want to delete #{hero.name}?" %>
+                </div>
               </div>
             </div>
-            
-            <div class="hero-info">
-              <div class="hero-header">
-                <h3 class="hero-name"><%= link_to hero.name, hero_path(hero) %></h3>
-                <div class="hero-difficulty">
-                  <span class="difficulty-stars">
-                    <% hero.difficulty.times do %>★<% end %>
-                    <% (10 - hero.difficulty).times do %>☆<% end %>
-                  </span>
-                  <span class="difficulty-text"><%= hero.difficulty %>/10</span>
-                </div>
-              </div>
-              
-              <div class="hero-meta">
-                <div class="hero-lane">
-                  <i class="lane-icon"></i>
-                  <%= hero.lane %>
-                </div>
-                <div class="hero-specialty">
-                  <i class="specialty-icon"></i>
-                  <%= hero.specialty %>
-                </div>
-              </div>
-              
-              <div class="hero-description">
-                <%= truncate(hero.description, length: 120) %>
-              </div>
-              
-              <div class="hero-actions">
-                <%= link_to "View Details", hero_path(hero), class: "btn btn-primary btn-sm" %>
-                <%= link_to "Edit", edit_hero_path(hero), class: "btn btn-outline btn-sm" %>
-                <%= link_to "Delete", hero_path(hero), 
-                    method: :delete, 
-                    class: "btn btn-danger btn-sm",
-                    confirm: "Are you sure you want to delete #{hero.name}?" %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
     <% else %>
       <div class="empty-state">
         <h2>No Heroes Found</h2>
         <% if params[:search].present? %>
           <p>No heroes match your search for "<%= params[:search] %>".</p>
           <%= link_to "View All Heroes", heroes_path, class: "btn btn-primary" %>
-        <% else %>
-          <p>Start building your heroes collection!</p>
-          <div class="empty-actions">
-            <%= link_to "Add Your First Hero", new_hero_path, class: "btn btn-primary" %>
-            <%= button_to "Import from MLBB API", "/heroes/import_from_api", 
-                method: :post, 
-                class: "btn btn-secondary" %>
-          </div>
+    
         <% end %>
       </div>
     <% end %>

@@ -1,2 +1,66 @@
-<h1>Heroes#edit</h1>
-<p>Find me in app/views/heroes/edit.html.erb</p>
+<div class="form-container">
+  <h1>Edit <%= @hero.name %></h1>
+
+  <%= form_with model: @hero, local: true, html: { multipart: true } do |form| %>
+    <% if @hero.errors.any? %>
+      <div class="error-messages">
+        <h3><%= pluralize(@hero.errors.count, "error") %> prohibited this hero from being saved:</h3>
+        <ul>
+          <% @hero.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-input' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :role, class: 'form-label' %>
+      <%= form.select :role, options_for_select(Hero::ROLES.map { |role| [role, role] }, @hero.role), 
+                      { prompt: 'Select a role' }, { class: 'form-select' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :specialty, class: 'form-label' %>
+      <%= form.text_field :specialty, class: 'form-input' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :lane, class: 'form-label' %>
+      <%= form.text_field :lane, class: 'form-input' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :difficulty, class: 'form-label' %>
+      <%= form.number_field :difficulty, in: 1..10, class: 'form-input' %>
+      <small>Rate from 1 (easy) to 10 (very hard)</small>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :description, class: 'form-label' %>
+      <%= form.text_area :description, rows: 4, class: 'form-textarea' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :image, "Hero Image", class: 'form-label' %>
+      <%= form.file_field :image, class: 'form-input', accept: 'image/*' %>
+      
+      <% if @hero.image.attached? %>
+        <div style="margin-top: 10px;">
+          <p><strong>Current image:</strong></p>
+          <%= image_tag @hero.image, style: 'width: 150px; height: 150px; object-fit: cover; border-radius: 8px; border: 2px solid #ddd;' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit "Update Hero", class: 'btn' %>
+      <%= link_to 'Show', @hero, class: 'btn btn-secondary' %>
+      <%= link_to 'Back to Heroes', heroes_path, class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+</div>

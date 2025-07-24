@@ -1,2 +1,6 @@
-<h1>Heroes#show</h1>
-<p>Find me in app/views/heroes/show.html.erb</p>
+<% if @hero.image.attached? %>
+  <%= image_tag @hero.image.variant(resize_to_limit: [300, 300]) %>
+<% else %>
+  <p>No image uploaded.</p>
+<% end %>
+
