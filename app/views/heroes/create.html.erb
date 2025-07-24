@@ -1,0 +1,78 @@
+<% content_for :title, "Create New Hero - MLBB Heroes" %>
+
+<div class="page-container">
+  <header class="page-header">
+    <h1>Create New Hero</h1>
+    <p class="subtitle">Add a new Mobile Legends: Bang Bang hero to the collection</p>
+  </header>
+
+  <div class="form-container">
+    <%= form_with model: @hero, local: true, class: "hero-form" do |form| %>
+      <% if @hero.errors.any? %>
+        <div class="error-messages">
+          <h3><%= pluralize(@hero.errors.count, "error") %> prohibited this hero from being saved:</h3>
+          <ul>
+            <% @hero.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-input", placeholder: "Enter hero name..." %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :role, class: "form-label" %>
+        <%= form.select :role, options_for_select([
+          ['Tank', 'Tank'],
+          ['Fighter', 'Fighter'],
+          ['Assassin', 'Assassin'],
+          ['Mage', 'Mage'],
+          ['Marksman', 'Marksman'],
+          ['Support', 'Support']
+        ], @hero.role), { prompt: 'Select a role...' }, { class: "form-select" } %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :specialty, class: "form-label" %>
+        <%= form.select :specialty, options_for_select([
+          ['Charge', 'Charge'],
+          ['Regen', 'Regen'],
+          ['Burst', 'Burst'],
+          ['Poke', 'Poke'],
+          ['Push', 'Push'],
+          ['Support', 'Support']
+        ], @hero.specialty), { prompt: 'Select a specialty...' }, { class: "form-select" } %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :lane, class: "form-label" %>
+        <%= form.select :lane, options_for_select([
+          ['Exp Lane', 'Exp Lane'],
+          ['Jungle', 'Jungle'],
+          ['Mid Lane', 'Mid Lane'],
+          ['Gold Lane', 'Gold Lane'],
+          ['Roam', 'Roam']
+        ], @hero.lane), { prompt: 'Select a lane...' }, { class: "form-select" } %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :difficulty, "Difficulty (1-10)", class: "form-label" %>
+        <%= form.number_field :difficulty, in: 1..10, step: 1, class: "form-input", placeholder: "1-10" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.text_area :description, rows: 4, class: "form-textarea", placeholder: "Describe the hero's abilities and playstyle..." %>
+      </div>
+
+      <div class="form-actions">
+        <%= form.submit "Create Hero", class: "btn btn-primary" %>
+        <%= link_to "Cancel", heroes_path, class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

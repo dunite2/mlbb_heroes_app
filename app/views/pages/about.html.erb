@@ -1,0 +1,53 @@
+<% content_for :title, "About - MLBB Heroes" %>
+
+<div class="about-page">
+  <h1>About MLBB Heroes App</h1>
+  
+  <div class="about-content">
+    <h2>Data Sources</h2>
+    <p>This application provides comprehensive information about Mobile Legends: Bang Bang heroes.</p>
+    
+    <h3>Hero Data Sources:</h3>
+    <ul>
+      <li><strong>Mobile Legends Official Game Data</strong> - Hero statistics, roles, and abilities</li>
+      <li><strong>Community Resources</strong> - Hero guides and meta information</li>
+      <li><strong>API Integration</strong> - Real-time hero data from MLBB APIs</li>
+    </ul>
+    
+    <h2>About This App</h2>
+    <p>The MLBB Heroes app allows you to:</p>
+    <ul>
+      <li>Browse all Mobile Legends heroes</li>
+      <li>View detailed hero information including roles, specialties, and difficulty ratings</li>
+      <li>Add new heroes to the database</li>
+      <li>Edit existing hero information</li>
+      <li>Delete heroes from the database</li>
+    </ul>
+    
+    <h2>Hero Attributes</h2>
+    <div class="hero-attributes">
+      <h3>Roles:</h3>
+      <p>Tank, Fighter, Assassin, Mage, Marksman, Support</p>
+      
+      <h3>Lanes:</h3>
+      <p>Exp Lane, Jungle, Mid Lane, Gold Lane, Roam</p>
+      
+      <h3>Specialties:</h3>
+      <p>Charge, Regen, Burst, Poke, Push, Support</p>
+      
+      <h3>Difficulty:</h3>
+      <p>Rated from 1 (Easy) to 10 (Very Hard)</p>
+    </div>
+    
+    <div class="app-info">
+      <h2>Technical Information</h2>
+      <p>This application is built with Ruby on Rails and uses SQLite as the database.</p>
+      <p>Created as part of a full-stack web development project.</p>
+    </div>
+  </div>
+  
+  <div class="navigation-links">
+    <%= link_to "View All Heroes", heroes_path, class: "btn btn-primary" %>
+    <%= link_to "Add New Hero", new_hero_path, class: "btn btn-secondary" %>
+  </div>
+</div>
